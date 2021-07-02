@@ -11,6 +11,7 @@ export const test = test => {
   })
 
   const baseURL = new URL("./fixtures/env/", import.meta.url)
+  console.log(baseURL.pathname)
   test(".env is ignored", async () => {
     const output = child.execSync("node noenv-script.js", {
       cwd: baseURL.pathname,
