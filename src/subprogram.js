@@ -11,7 +11,7 @@ export const script = async script => {
       const dotenv = await import("dotenv")
       dotenv.config(script.dotenv === true ? {} : script.dotenv)
     }
-  }
 
-  await script.main()
+    await script.main()
+  }
 }

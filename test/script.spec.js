@@ -28,4 +28,13 @@ export const test = test => {
 
     assert.equal(output.toString(), "FOO=bar\n")
   })
+
+  test("run when main module", async () => {
+    const output = child.execSync("node test/fixtures/submodule.js")
+    assert.equal(output.toString(), "Hello submodule\n")
+  })
+  test("do not run when not main", async () => {
+    const output = child.execSync("node test/fixtures/module-script.js")
+    assert.equal(output.toString(), "Hello script\n")
+  })
 }
