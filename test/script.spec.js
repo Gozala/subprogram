@@ -1,5 +1,6 @@
 import child from "child_process"
 import { assert } from "./test.js"
+import { fileURLToPath } from "url"
 
 /**
  * @param {import('./test').Test} test
@@ -10,11 +11,11 @@ export const test = test => {
     assert.equal(output.toString(), "Hello world\n")
   })
 
-  const baseURL = new URL("./fixtures/env/", import.meta.url)
-  console.log(baseURL.pathname)
+  const cwd = fileURLToPath(new URL("./fixtures/env/", import.meta.url))
+
   test(".env is ignored", async () => {
     const output = child.execSync("node noenv-script.js", {
-      cwd: baseURL.pathname,
+      cwd,
     })
 
     assert.equal(output.toString(), "FOO=undefined\n")
@@ -22,7 +23,7 @@ export const test = test => {
 
   test(".env is included", async () => {
     const output = child.execSync("node env-script.js", {
-      cwd: baseURL.pathname,
+      cwd,
     })
 
     assert.equal(output.toString(), "FOO=bar\n")
