@@ -37,4 +37,13 @@ export const test = test => {
     const output = child.execSync("node test/fixtures/module-script.js")
     assert.equal(output.toString(), "Hello script\n")
   })
+
+  test("prints errors", async () => {
+    const { stderr, status } = child.spawnSync("node", [
+      "test/fixtures/throw-script.js",
+    ])
+    assert.equal(status, 1)
+    assert.ok(stderr.toString().includes("Boom"))
+    assert.ok(stderr.toString().includes("throw-script.js:3:9"))
+  })
 }
