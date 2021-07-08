@@ -19,6 +19,13 @@ export const script = async script => {
       dotenv.config(script.dotenv === true ? {} : script.dotenv)
     }
 
-    await script.main()
+    try {
+      await script.main()
+    } catch (error) {
+      console.error(error)
+      if (process.exitCode == null || process.exitCode === 0) {
+        process.exit(1)
+      }
+    }
   }
 }
