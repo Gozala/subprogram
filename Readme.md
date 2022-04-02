@@ -13,7 +13,7 @@ export const main () => {
   console.log("Hello world")
 }
 
-script({ ...module.meta, main })
+script({ ...import.meta, main })
 ```
 
 When above program is run as `node script.js` it will run a `main` function of the module, if module is imported no action will take place.
