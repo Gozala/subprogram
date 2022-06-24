@@ -22,7 +22,6 @@
   "repository": "https://github.com/gozala/subprogram",
   "license": "MIT",
   "dependencies": {
-    "@web-std/file-url": "^1.0.1",
     "dotenv": "^10.0.0"
   },
   "devDependencies": {

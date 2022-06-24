@@ -1,4 +1,4 @@
-import { fromPath } from "@web-std/file-url"
+import { pathToFileURL } from "url"
 
 /**
  * Tells you if it's main module.
@@ -6,7 +6,7 @@ import { fromPath } from "@web-std/file-url"
  * @param {ImportMeta} meta
  * @returns {boolean}
  */
-export const isMain = meta => fromPath(process.argv[1]).href === meta.url
+export const isMain = meta => pathToFileURL(process.argv[1]).href === meta.url
 
 /**
  *
